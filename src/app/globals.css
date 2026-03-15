@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Eleythra marka renkleri */
+:root {
+  --background: #f6f8fb;
+  --foreground: #0f1b2d;
+  --brand-dark: #0f1b2d;
+  --brand-dark-section: #0b1320;
+  --brand-accent: #00a8e8;
+  --brand-accent-hover: #0093cc;
+  --brand-highlight: #6c63ff;
+  --brand-bg: #f6f8fb;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
