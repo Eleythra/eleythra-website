@@ -102,7 +102,7 @@ export function ProjelerSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.3 }}
               >
-                Otel misafirlerinin tüm konaklama deneyimini tek noktadan yöneten akıllı dijital asistan. Mobil uygulama, web ve kiosk ile 7'den 70'e herkes için erişim.
+                Otel misafirlerinin tüm konaklama deneyimini tek noktadan yöneten akıllı dijital asistan. Mobil uygulama, web ve kiosk ile 7&apos;den 70&apos;e herkes için erişim.
               </motion.p>
               <ul className="mt-5 space-y-2">
                 {VIONA_HIGHLIGHTS.map((item, i) => (

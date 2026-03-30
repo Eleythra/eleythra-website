@@ -37,7 +37,7 @@ const PROBLEMS = [
 
 export function ProblemSection() {
   return (
-    <section className="bg-white px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+    <section className="bg-white px-4 pb-16 pt-10 sm:px-6 sm:pb-24 sm:pt-14 lg:px-8 lg:pt-16">
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 text-center md:mb-14">
           <h2 className="font-heading text-3xl font-bold tracking-tight text-brand-dark sm:text-4xl lg:text-5xl">

@@ -18,6 +18,9 @@ const socialIcons = [
   { key: "youtube", href: SOCIAL_LINKS.youtube, label: "YouTube" },
 ];
 
+const linkClass =
+  "text-sm font-medium text-brand-dark/90 transition-colors hover:text-brand-accent";
+
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -25,34 +28,34 @@ export function Header() {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        scrolled ? "bg-white/95 shadow-md backdrop-blur-sm" : "bg-transparent"
+      className={`sticky top-0 z-50 w-full border-b bg-white transition-[box-shadow] duration-300 ${
+        scrolled
+          ? "border-brand-dark/[0.08] shadow-[0_4px_24px_-4px_rgba(15,27,45,0.12)]"
+          : "border-brand-dark/[0.06] shadow-[0_1px_0_rgba(15,27,45,0.04)]"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        {/* Logo */}
+      <div className="mx-auto flex h-[4rem] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex shrink-0 items-center" aria-label={SITE_NAME}>
-          <div className="relative h-10 w-[140px] sm:h-11 sm:w-[160px]">
+          <div className="relative h-9 w-[132px] sm:h-10 sm:w-[152px]">
             <Image
               src={LOGO_PATH}
               alt={SITE_NAME}
               fill
               className="object-contain object-left"
-              sizes="(max-width: 640px) 140px, 160px"
+              sizes="(max-width: 640px) 132px, 152px"
               priority
             />
           </div>
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Ana menü">
+        <nav className="hidden items-center gap-7 md:flex lg:gap-8" aria-label="Ana menü">
           {NAV_LINKS.map((item) => {
             if (hasSubLinks(item)) {
               return (
@@ -65,18 +68,18 @@ export function Header() {
                 >
                   <button
                     type="button"
-                    className="flex items-center gap-1 text-sm font-medium text-brand-dark transition-colors hover:text-brand-accent"
+                    className={`flex items-center gap-1 ${linkClass}`}
                     aria-expanded={referansOpen}
                     aria-haspopup="true"
                   >
                     {item.label}
-                    <svg className="h-4 w-4 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
+                    <svg className="h-4 w-4 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
                   {referansOpen && (
-                    <div className="absolute left-0 top-full pt-1">
-                      <div className="min-w-[240px] rounded-lg border border-brand-dark/10 bg-white py-1 shadow-lg">
+                    <div className="absolute left-0 top-full z-20 pt-1.5">
+                      <div className="min-w-[240px] rounded-xl border border-brand-dark/10 bg-white py-1.5 shadow-lg shadow-brand-dark/10 ring-1 ring-brand-dark/[0.04]">
                         {item.subLinks.map((sub) => (
                           <Link
                             key={sub.href}
@@ -94,26 +97,21 @@ export function Header() {
             }
             const { href, label } = item as { href: string; label: string };
             return (
-              <Link
-                key={href}
-                href={href}
-                className="text-sm font-medium text-brand-dark transition-colors hover:text-brand-accent"
-              >
+              <Link key={href} href={href} className={linkClass}>
                 {label}
               </Link>
             );
           })}
         </nav>
 
-        {/* Social icons - desktop */}
-        <div className="hidden items-center gap-4 md:flex">
+        <div className="hidden items-center gap-3 md:flex lg:gap-3.5">
           {socialIcons.map(({ href, label, key }) => (
             <a
               key={key}
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-brand-dark/70 transition-colors hover:text-brand-accent"
+              className="rounded-lg p-1 text-brand-dark/55 transition-colors hover:bg-brand-bg hover:text-brand-accent"
               aria-label={label}
             >
               <SocialIcon type={key as SocialIconKey} />
@@ -121,7 +119,6 @@ export function Header() {
           ))}
         </div>
 
-        {/* Mobile menu button */}
         <button
           type="button"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -141,15 +138,14 @@ export function Header() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
-        <div className="border-t border-brand-dark/10 bg-white/98 backdrop-blur-sm md:hidden">
-          <nav className="flex flex-col gap-1 px-4 py-4" aria-label="Mobil menü">
+        <div className="border-t border-brand-dark/10 bg-white md:hidden">
+          <nav className="flex flex-col gap-0.5 px-4 py-4" aria-label="Mobil menü">
             {NAV_LINKS.map((item) => {
               if (hasSubLinks(item)) {
                 return (
                   <div key={item.label} className="flex flex-col gap-0">
-                    <span className="rounded-lg px-4 py-2 text-sm font-semibold text-brand-dark/80">
+                    <span className="rounded-lg px-4 py-2 text-sm font-semibold text-brand-dark/75">
                       {item.label}
                     </span>
                     {item.subLinks.map((sub) => (
@@ -177,14 +173,14 @@ export function Header() {
                 </Link>
               );
             })}
-            <div className="mt-4 flex gap-4 border-t border-brand-dark/10 pt-4">
+            <div className="mt-4 flex gap-3 border-t border-brand-dark/10 pt-4">
               {socialIcons.map(({ href, label, key }) => (
                 <a
                   key={key}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-brand-dark/70 transition-colors hover:text-brand-accent"
+                  className="text-brand-dark/60 transition-colors hover:text-brand-accent"
                   aria-label={label}
                 >
                   <SocialIcon type={key as SocialIconKey} />

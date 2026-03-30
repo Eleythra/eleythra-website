@@ -41,7 +41,7 @@ export function EleythraNedirSection() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 text-center md:mb-14">
           <h2 className="font-heading text-3xl font-bold tracking-tight text-brand-dark sm:text-4xl lg:text-5xl">
-            Eleythra'nın Teknoloji Yaklaşımı
+            Eleythra&apos;nın Teknoloji Yaklaşımı
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-brand-dark/80">
             Eleythra, misafir deneyimini daha akıllı ve verimli hale getirmek için insan odaklı teknoloji, veri analizi ve otomasyonu bir araya getirir.

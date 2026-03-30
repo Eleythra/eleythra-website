@@ -165,6 +165,8 @@ export function AdminTaleplerTabs({ talepler: taleplerProp }: Props) {
 
   /** Sunucu verisi yenilenince birleştir: refresh eski read_at getirirse yerel okundu bilgisini silme */
   useEffect(() => {
+    // Sunucu props ile yerel satır state senkronu (read_at birleştirme); props değişiminde gerekli.
+    /* eslint-disable react-hooks/set-state-in-effect -- controlled merge from server props + local read_at */
     setRows((prev) =>
       taleplerProp.map((server) => {
         const local = prev.find((p) => p.id === server.id);
