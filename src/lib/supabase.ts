@@ -25,5 +25,7 @@ export type TaleplerRow = {
   project: string | null;
   subject: string | null;
   message: string | null;
+  /** null/undefined = beklemede, dolu = okundu */
+  read_at?: string | null;
   created_at: string;
 };

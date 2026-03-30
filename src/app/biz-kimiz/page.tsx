@@ -25,7 +25,7 @@ export default function BizKimizPage() {
               className="max-w-xl"
             >
               <h1 className="font-heading text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-[2.75rem]">
-                Misafir Deneyiminin Geleceğini İnşa Ediyoruz
+                Misafir Deneyiminin Geleceğini Tasarlıyoruz
               </h1>
               <p className="mt-6 text-lg leading-relaxed text-white/90">
                 Eleythra Derin Teknoloji, misafir deneyiminin olduğu alanlarda yapay zekâ ve veri

@@ -21,7 +21,6 @@ export function VionaCard() {
               fill
               className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
               sizes="(max-width: 640px) 100vw, 36rem"
-              unoptimized
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0B1320]/80 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />

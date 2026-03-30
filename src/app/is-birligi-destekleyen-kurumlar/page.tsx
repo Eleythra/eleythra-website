@@ -79,7 +79,6 @@ export default function IsBirligiDestekleyenKurumlarPage() {
                       fill
                       className="object-contain"
                       sizes="(max-width: 640px) 100vw, 50vw"
-                      unoptimized
                     />
                   </div>
                 </div>

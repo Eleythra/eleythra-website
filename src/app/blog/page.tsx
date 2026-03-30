@@ -45,11 +45,10 @@ export default function BlogPage() {
               <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[280px]">
                 <Image
                   src={featured.image}
-                  alt=""
+                  alt={featured.title}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  unoptimized
                   priority
                 />
               </div>
@@ -92,11 +91,10 @@ export default function BlogPage() {
                   <div className="relative aspect-[16/10] shrink-0">
                     <Image
                       src={post.image}
-                      alt=""
+                      alt={post.title}
                       fill
                       className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      unoptimized
                     />
                   </div>
                   <div className="flex flex-1 flex-col p-5">

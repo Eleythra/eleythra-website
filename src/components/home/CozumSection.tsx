@@ -45,7 +45,7 @@ export function CozumSection() {
           <h2 className="font-heading text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
             Misafir Deneyimi İçin Akıllı Platformlar
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-200">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/85">
             Tek bir platformda bilgi, hizmet talebi, rezervasyon ve iletişim; yapay zekâ ve veri ile güçlendirilmiş.
           </p>
         </div>

@@ -12,13 +12,19 @@ create table if not exists talepler (
   project text,
   subject text,
   message text,
+  read_at timestamptz,
   created_at timestamptz default now()
 );
+
+-- Mevcut projeler: sütun yoksa ekler (Supabase SQL Editor’da bir kez çalıştırın)
+alter table talepler add column if not exists read_at timestamptz;
 
 -- Sadece sunucu (service_role) erişsin; tarayıcıdan doğrudan okuma/yazma kapalı
 alter table talepler enable row level security;
 
 -- Anon/authenticated hiçbir şey yapamasın (API route service_role ile yazacak)
+drop policy if exists "Sadece service role" on talepler;
+
 create policy "Sadece service role"
   on talepler for all
   using (false)

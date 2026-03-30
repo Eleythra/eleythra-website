@@ -25,11 +25,10 @@ export default function KailaBeachPage() {
         <div className="absolute inset-0">
           <Image
             src={KAILA_HERO_IMAGE}
-            alt=""
+            alt="Kaila Beach Hotel"
             fill
             className="object-cover opacity-40"
             sizes="100vw"
-            unoptimized
             priority
           />
           <div className="absolute inset-0 bg-[#0B1320]/70" />

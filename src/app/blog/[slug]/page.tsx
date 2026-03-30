@@ -54,11 +54,10 @@ export default async function BlogPostPage({
           <div className="relative aspect-[16/10] w-full">
             <Image
               src={post.image}
-              alt=""
+              alt={post.title}
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 48rem"
-              unoptimized
               priority
             />
           </div>

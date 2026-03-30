@@ -44,7 +44,6 @@ export default function VionaDetailPage() {
             fill
             className="object-cover object-top"
             sizes="100vw"
-            unoptimized
           />
         </div>
         <div className="absolute inset-0 bg-[#0B1320]/85" />
@@ -262,7 +261,6 @@ export default function VionaDetailPage() {
                 fill
                 className="object-cover object-top"
                 sizes="(max-width: 1024px) 100vw, 80rem"
-                unoptimized
               />
             </div>
           </motion.div>
