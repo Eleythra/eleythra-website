@@ -1,7 +1,8 @@
 import { Suspense } from "react";
-import { redirect } from "next/navigation";
 import Link from "next/link";
+import { cookies } from "next/headers";
 import { unstable_noStore as noStore } from "next/cache";
+import { ADMIN_SESSION_COOKIE } from "@/lib/admin-auth";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import type { TaleplerRow } from "@/lib/supabase";
 import { AdminTaleplerTabs } from "./AdminTaleplerTabs";
@@ -18,6 +19,43 @@ export const revalidate = 0;
 const publicSiteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://eleythra.com";
 
 const READ_AT_SQL = `alter table talepler add column if not exists read_at timestamptz;`;
+
+/** Token yok/yanlış: ana siteye yönlendirme yok (Vercel’de host başlığı her zaman eşleşmeyebilir). */
+function AdminTokenHelp({
+  publicSiteUrl,
+  adminHost,
+}: {
+  publicSiteUrl: string;
+  adminHost: string;
+}) {
+  return (
+    <div className="min-h-screen bg-brand-bg px-4 py-16 sm:px-6">
+      <div className="mx-auto max-w-lg rounded-2xl border border-brand-dark/10 bg-white p-8 shadow-sm">
+        <h1 className="font-heading text-xl font-bold text-brand-dark">Yönetim paneli</h1>
+        <p className="mt-4 text-sm text-brand-dark/80">
+          <strong>Önerilen:</strong> Aşağıdaki linki <strong>bir kez</strong> açın (token, Vercel’deki{" "}
+          <code className="rounded bg-brand-dark/5 px-1 text-xs">ADMIN_DEMO_TOKEN</code> ile aynı). Tarayıcı
+          çerez kaydeder; sonra ~90 gün boyunca aynı cihazda{" "}
+          <code className="rounded bg-neutral-100 px-1">https://{adminHost}/</code> adresini token yazmadan
+          açabilirsiniz.
+        </p>
+        <pre className="mt-4 overflow-x-auto rounded-lg bg-brand-dark/5 p-3 text-xs text-brand-dark">
+          {`https://${adminHost}/api/admin/session?token=TOKEN_BURAYA`}
+        </pre>
+        <p className="mt-4 text-sm text-brand-dark/80">
+          Alternatif (her seferinde URL’de token):{" "}
+          <code className="rounded bg-neutral-100 px-1 text-xs">{`https://${adminHost}/?token=...`}</code>
+        </p>
+        <Link
+          href={publicSiteUrl}
+          className="mt-6 inline-block text-sm font-medium text-brand-accent hover:underline"
+        >
+          ← Ana siteye dön
+        </Link>
+      </div>
+    </div>
+  );
+}
 
 /** Okundu özelliği için read_at sütunu var mı (canlı DB’de çoğu zaman eksik kalır) */
 async function hasReadAtColumn(): Promise<boolean> {
@@ -48,11 +86,33 @@ export default async function AdminTaleplerPage({
 }: {
   searchParams: Promise<{ token?: string }>;
 }) {
-  const { token } = await searchParams;
+  const { token: tokenFromUrl } = await searchParams;
   const adminToken = process.env.ADMIN_DEMO_TOKEN;
+  const adminHostEnv = process.env.ADMIN_HOST?.trim().toLowerCase() ?? "";
+  const adminHostForUrl = adminHostEnv || "admin.eleythra.com";
 
-  if (!adminToken || token !== adminToken) {
-    redirect(publicSiteUrl);
+  const cookieStore = await cookies();
+  const tokenFromCookie = cookieStore.get(ADMIN_SESSION_COOKIE)?.value;
+  const token = (tokenFromUrl && tokenFromUrl.length > 0 ? tokenFromUrl : tokenFromCookie) ?? "";
+
+  if (!adminToken) {
+    return (
+      <div className="min-h-screen bg-brand-bg px-4 py-16 sm:px-6">
+        <div className="mx-auto max-w-lg rounded-2xl border border-amber-200 bg-amber-50 p-8 text-sm text-amber-950">
+          <strong>Vercel:</strong> <code className="rounded bg-white px-1">ADMIN_DEMO_TOKEN</code> ortam
+          değişkeni tanımlı değil. Projeye ekleyip yeniden deploy edin.
+          <Link href={publicSiteUrl} className="mt-4 block text-brand-accent hover:underline">
+            ← Ana site
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  if (!token || token !== adminToken) {
+    return (
+      <AdminTokenHelp publicSiteUrl={publicSiteUrl} adminHost={adminHostForUrl} />
+    );
   }
 
   const [talepler, readAtOk] = await Promise.all([getTalepler(), hasReadAtColumn()]);
@@ -82,12 +142,14 @@ export default async function AdminTaleplerPage({
           <h1 className="font-heading text-2xl font-bold text-brand-dark sm:text-3xl">
             Talepler
           </h1>
-          <Link
-            href={publicSiteUrl}
-            className="text-sm font-medium text-brand-accent hover:underline"
-          >
-            ← Ana site
-          </Link>
+          <div className="flex flex-wrap items-center gap-4 text-sm">
+            <Link href={publicSiteUrl} className="font-medium text-brand-accent hover:underline">
+              ← Ana site
+            </Link>
+            <a href="/api/admin/logout" className="text-brand-dark/60 hover:text-brand-dark hover:underline">
+              Çıkış
+            </a>
+          </div>
         </div>
 
         {talepler.length === 0 ? (

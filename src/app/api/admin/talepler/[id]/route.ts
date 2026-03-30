@@ -1,21 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminToken } from "@/lib/admin-auth";
 import { getSupabaseAdmin } from "@/lib/supabase";
 
 function unauthorized() {
   return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
 }
 
-function verifyToken(request: NextRequest) {
-  const token = request.headers.get("x-admin-token");
-  const adminToken = process.env.ADMIN_DEMO_TOKEN;
-  return !!(adminToken && token === adminToken);
-}
-
 export async function PATCH(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
-  if (!verifyToken(request)) return unauthorized();
+  if (!verifyAdminToken(request)) return unauthorized();
 
   const { id } = await context.params;
   let body: { read?: boolean };
@@ -77,7 +72,7 @@ export async function DELETE(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
-  if (!verifyToken(request)) return unauthorized();
+  if (!verifyAdminToken(request)) return unauthorized();
 
   const { id } = await context.params;
   const supabase = getSupabaseAdmin();

@@ -68,21 +68,25 @@ function TalepActions({
   const isRead = !!readAt;
 
   async function patchRead(read: boolean) {
-    if (!token) {
-      alert("Oturum anahtarı (token) bulunamadı. URL’de ?token=... olmalı.");
-      return;
-    }
     setBusy(true);
     try {
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+      };
+      if (token) headers["x-admin-token"] = token;
+
       const res = await fetch(`/api/admin/talepler/${id}`, {
         method: "PATCH",
         cache: "no-store",
-        headers: {
-          "Content-Type": "application/json",
-          "x-admin-token": token,
-        },
+        credentials: "include",
+        headers,
         body: JSON.stringify({ read }),
       });
+      if (res.status === 401) {
+        throw new Error(
+          "Oturum yok. Bir kez giriş linkini açın veya URL’de ?token= kullanın."
+        );
+      }
       if (!res.ok) {
         const j = (await res.json().catch(() => ({}))) as { error?: string };
         throw new Error(j.error || "İşlem başarısız");
@@ -99,17 +103,22 @@ function TalepActions({
 
   async function remove() {
     if (!confirm("Bu kaydı kalıcı olarak silmek istiyor musunuz?")) return;
-    if (!token) {
-      alert("Oturum anahtarı (token) bulunamadı.");
-      return;
-    }
     setBusy(true);
     try {
+      const headers: Record<string, string> = {};
+      if (token) headers["x-admin-token"] = token;
+
       const res = await fetch(`/api/admin/talepler/${id}`, {
         method: "DELETE",
         cache: "no-store",
-        headers: { "x-admin-token": token },
+        credentials: "include",
+        headers,
       });
+      if (res.status === 401) {
+        throw new Error(
+          "Oturum yok. Bir kez giriş linkini açın veya URL’de ?token= kullanın."
+        );
+      }
       if (!res.ok) {
         const j = (await res.json().catch(() => ({}))) as { error?: string };
         throw new Error(j.error || "Silinemedi");
