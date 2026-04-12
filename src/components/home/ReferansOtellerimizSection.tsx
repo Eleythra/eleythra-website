@@ -91,7 +91,7 @@ export function ReferansOtellerimizSection() {
                 Viona ile akıllı misafir deneyimi
               </p>
               <p className="mt-4 text-brand-dark/80 leading-relaxed">
-                Alanya Kaila Beach Otel, Viona platformunu 15 Nisan itibarıyla devreye aldı.
+                Alanya Kaila Beach Otel, Viona platformunu 01 Nisan 2026 itibarıyla devreye aldı.
                 Sezon açılışıyla birlikte misafirler check-in/out, rezervasyon, oda servisi ve
                 tüm otel hizmetlerine tek uygulama üzerinden ulaşabiliyor.
               </p>
@@ -102,7 +102,7 @@ export function ReferansOtellerimizSection() {
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-brand-accent" />
-                  15 Nisan 2025 — sezon açılışı ile kullanımda
+                  01 Nisan 2026 itibarıyla devrede — sezon açılışıyla kullanımda
                 </li>
               </ul>
               <div className="mt-8 flex flex-wrap gap-3">

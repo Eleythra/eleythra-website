@@ -8,7 +8,7 @@ const REFERENCE_HOTELS = [
     location: "Alanya, Antalya",
     image: "/oteller/kaila-beach/otel.png",
     shortDescription:
-      "Viona platformunun ilk uygulama noktalarından biri. Misafir deneyimini dijitalleştiren çözümler gerçek operasyon ortamında uygulanıyor.",
+      "Alanya Kaila Beach Otel, Viona platformunu 01 Nisan 2026 itibarıyla devreye aldı. Check-in/out, rezervasyon, oda servisi ve tüm hizmetler tek uygulamada.",
   },
 ];
 

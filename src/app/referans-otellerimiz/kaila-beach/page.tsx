@@ -7,7 +7,7 @@ const KAILA_HOTEL_URL = "https://kailabeachhotel.com/tr/anasayfa/";
 export const metadata = {
   title: "Kaila Beach Hotel | Referans Otellerimiz | Eleythra",
   description:
-    "Alanya Kaila Beach Otel'de Viona platformu nasıl kuruldu? Eleythra ile iş birliği hikayesi ve kurulum süreci.",
+    "Alanya Kaila Beach Otel, Viona platformunu 01 Nisan 2026 itibarıyla devreye aldı. Check-in/out, rezervasyon, oda servisi ve tüm otel hizmetleri tek uygulamada.",
 };
 
 export default function KailaBeachPage() {
@@ -47,10 +47,9 @@ export default function KailaBeachPage() {
             <span aria-hidden>📍</span> Alanya, Antalya
           </p>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/90">
-            Kaila Beach Hotel, Eleythra&apos;nın geliştirdiği Viona platformunun ilk uygulama
-            noktalarından biri olarak misafir deneyiminin dijitalleşmesi yolunda önemli bir pilot
-            çalışma alanı olmuştur. Bu iş birliği kapsamında geliştirilen teknolojiler gerçek bir
-            otel operasyonu içerisinde test edilmekte ve geliştirilerek ilerletilmektedir.
+            Alanya Kaila Beach Otel, Viona platformunu 01 Nisan 2026 itibarıyla devreye aldı. Sezon
+            açılışıyla birlikte misafirler check-in/out, rezervasyon, oda servisi ve tüm otel
+            hizmetlerine tek uygulama üzerinden ulaşabiliyor.
           </p>
         </div>
       </section>
@@ -94,25 +93,24 @@ export default function KailaBeachPage() {
             Viona Platformu Devrede
           </h2>
           <p className="mt-4 leading-relaxed text-brand-dark/85">
-            Kaila Beach Hotel, Viona platformunu sezon açılışıyla birlikte aktif olarak kullanmaya
-            başlamıştır. Misafirler platform üzerinden:
+            Misafirler tek uygulama üzerinden şunlara erişebiliyor:
           </p>
-          <ul className="mt-4 space-y-2 text-brand-dark/85">
+          <ul className="mt-3 space-y-2 text-brand-dark/85">
             <li className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-accent" />
-              check-in ve check-out işlemlerini gerçekleştirebilir
+              check-in ve check-out
             </li>
             <li className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-accent" />
-              rezervasyon bilgilerine ulaşabilir
+              rezervasyon
             </li>
             <li className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-accent" />
-              oda servisi ve otel hizmetlerine erişebilir
+              oda servisi
             </li>
             <li className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-accent" />
-              otel ile doğrudan iletişim kurabilir
+              tüm otel hizmetleri
             </li>
           </ul>
         </div>
@@ -127,10 +125,10 @@ export default function KailaBeachPage() {
           <div className="mt-8 grid gap-6 sm:grid-cols-3">
             <div className="rounded-2xl border border-brand-dark/10 bg-brand-bg p-6 shadow-sm">
               <p className="text-sm font-semibold text-brand-accent">Kurulum Tamamlandı</p>
-              <p className="mt-1 text-xl font-bold text-brand-dark">15 Nisan 2025</p>
+              <p className="mt-1 text-xl font-bold text-brand-dark">01 Nisan 2026</p>
             </div>
             <div className="rounded-2xl border border-brand-dark/10 bg-brand-bg p-6 shadow-sm">
-              <p className="text-sm font-semibold text-brand-accent">Pilot Otel</p>
+              <p className="text-sm font-semibold text-brand-accent">Referans otel</p>
               <p className="mt-1 text-xl font-bold text-brand-dark">Kaila Beach Hotel</p>
             </div>
             <div className="rounded-2xl border border-brand-dark/10 bg-brand-bg p-6 shadow-sm">
